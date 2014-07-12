@@ -27,6 +27,7 @@ gulp.task('public', task.public = function () {
     return gulp.src('./public/**')
                .pipe(gulp.dest('./build'));
 });
+gulp.task('public-clean', ['clean'], task.public);
 
 // CSS stylesheets
 gulp.task('styles', task.styles = function () {
@@ -34,15 +35,17 @@ gulp.task('styles', task.styles = function () {
                .pipe(sass())
                .pipe(gulp.dest('./build'));
 });
+gulp.task('styles-clean', ['clean'], task.styles);
 
 gulp.task('views', task.views = function () {
     return gulp.src('./src/**/*.html')
                .pipe(changed('./build'))
                .pipe(gulp.dest('./build'));
 });
+gulp.task('views-clean', ['clean'], task.views);
 
 // Build the app from source code
-gulp.task('build', ['clean', 'public', 'views', 'styles']);
+gulp.task('build', ['public-clean', 'views-clean', 'styles-clean']);
 
 // Launch a lightweight HTTP Server
 gulp.task('run', ['build'], function (next) {
