@@ -24,7 +24,7 @@ gulp.task('clean', function (cb) {
 
 // Copy public/static files
 gulp.task('public', task.public = function () {
-    return gulp.src('./public/**')
+    return gulp.src('./public/**/*.*')
                .pipe(gulp.dest('./build'));
 });
 gulp.task('public-clean', ['clean'], task.public);
